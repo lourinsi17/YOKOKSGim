@@ -18,27 +18,35 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block" id="rectangle">
                     <div id="GIM">
-                        GIM
+                        YOKOKS
                     </div>
+
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="btnContainer">
-                                <div id="GymIcon">
-                                    <img src="/imgs/gym-icon.png" alt="pizza house logo" id="GymIconPng">
-                                </div>
-                                <div class="btnText">
-                                    Home
+                            <a href="{{ url('/dashboard') }}">
+                                <div class="btnContainer login row" style="background-color: #555; color: #fff;">
+                                    <div id="GymIcon" class="col">
+                                        <img src="/imgs/Yokoks Logo without name png.png" alt="Yokoks logo" id="GymIconPng" style="width: 30px; height: 30px;">
+                                    </div>
+                                    <div class="btnText" class="col">
+                                        Home
+                                    </div>
                                 </div>
                             </a>
                         @else
                             
-                                <a href="{{ route('login') }}"  class="btnContainer login">
-                                    <div id="GymIcon">
-                                        <img src="/imgs/gym-icon.png" alt="pizza house logo" id="GymIconPng">
+                                <a href="{{ route('login') }}" >   
+                                <div class="btnContainer login row" style="background-color: #555; color: #fff;">
+                                    <div id="GymIcon" class="col">
+                                        <img src="/imgs/Yokoks Logo without name png.png" alt="Yokoks logo" id="GymIconPng" style="width: 30px; height: 30px;">
                                     </div>
-                                    <div class="btnText">
+
+                                    <div class="btnText col" style="color: #fff;">
                                         Login
                                     </div>
+                                </div>    
                                 </a>
+
+
                                 @if (Route::has('register'))
                                     <!-- <a href="{{ route('register') }}"  class="btnContainer register">
                                         <div class="btnText">
@@ -49,6 +57,7 @@
                             
                         @endauth
                 </div>
+
             @endif
         </div>
 

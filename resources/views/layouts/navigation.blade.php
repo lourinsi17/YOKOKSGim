@@ -1,14 +1,13 @@
 <nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
-
-
-            
             <!-- max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -->
             <div class="sidebar m-2 h-100" id="side_nav">
                 <div class="header-box px-2 pt-3">
-                    <h1 class="fs-4 d-flex justify-content-center">
-                        <span class="GIM">GIM</span>
-                    </h1>
+                    <div class="fs-4 d-flex justify-content-center">
+                        <div class="d-flex justify-content-center" id="GIMLOGO">
+                          <img src="/imgs/Yokoks Logo.png" alt="Yokoks logo" id="GymIconPng" style="width: 120px; height: 120px;">
+                        </div>
+                    </div>
                     <ul class="list-unstyled px-2">
                     <li class="dashboardActive d-flex justify-content-center" >
                         <a href="/dashboard" class="text-decoration-none py-2 d-block">
@@ -57,28 +56,7 @@
                         </a>
                     </li>
                     @endrole
-                    <div class="space"></div>
-                    <li class="classesActive d-flex justify-content-center">
-                        <a href="/gymclass" class="text-decoration-none py-2 d-block">
-                            <div class="d-flex justify-content-center">
-                              <i class="fa-solid fa-dumbbell"></i>
-                            </div>
-                            <div class="GIMText px-3">
-                              Classes
-                            </div>
-                        </a>
-                    </li>
-                    <div class="space"></div>
-                    <li class="membershipActive d-flex justify-content-center">
-                      <a href="/membership" class="text-decoration-none py-2 d-block">
-                        <div class="d-flex justify-content-center">
-                          <i class="fa-solid fa-address-book"></i>
-                        </div>
-                        <div class="GIMText">
-                          Membership
-                        </div>
-                      </a>
-                    </li>
+
                     @role('SuperAdmin')
                     </ul>
                     <div class="space"></div>

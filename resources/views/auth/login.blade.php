@@ -38,8 +38,10 @@
             
             <form method="POST" action="{{ route('login') }}">
                 
-                <div>
-                    <h1 class="GIM-header">GIM</h1>
+                <div class="GIM-header">
+                    <!-- <h1 class="GIM-header">YOKOKS</h1> -->
+                    <img src="/imgs/Yokoks Logo.png" alt="Yokoks logo" id="GymIconPng" style="width: 200px; height: 200px; -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+    filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));">
                 </div>
                 
                 @csrf

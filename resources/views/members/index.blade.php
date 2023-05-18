@@ -93,7 +93,7 @@
                         <th>PHONE NUMBER</th>
                         <th>ADDRESS</th>
                         <th>DATE OF BIRTH</th>
-                        <th>CLASS</th>
+                        <!-- <th>CLASS</th> -->
                         <th>STATUS</th>
                         <th></th>
                     
@@ -120,7 +120,7 @@
                         <td>{{$customer->phone_number}}</td>
                         <td>{{$customer->city}} City,{{$customer->province}}</td>
                         <td>{{$customer->date_of_birth}}</td>
-                        <td>{{$customer->name}}</td>
+                        <!-- <td>{{$customer->name}}</td> -->
                         @if($customer->status=="ACTIVE")
                             <td style="color:green">{{$customer->status}}</td>
                         @else
@@ -235,7 +235,7 @@
                     "paging": false,//Dont want paging                
                     "bPaginate": false,//Dont want paging  
                     searching: false,
-                    columnDefs: [{ targets: [2,3,5,7,8], orderable: false }],
+                    columnDefs: [{ targets: [2,3,6,7,], orderable: false }],
                     "language": {
                         "emptyTable": "No Members"
                     }

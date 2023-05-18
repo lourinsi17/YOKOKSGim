@@ -8,14 +8,14 @@
     margin-left: 4.5%;
     margin-bottom: 4%;
     text-align:center;
-    color: #DDA15E;
-    font-style: italic;
+    color: #a2ffa5;
+    /* font-style: italic; */
 
     text-shadow: 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
 }
 
 .GIM-membersCreate-container{
-    border: 3px solid #DDA15E;
+    border: 3px solid #555;
     padding: 60px 35px 10px;
 }
 
@@ -126,12 +126,12 @@
 .head-title{
     font-family: 'Inter';
     /* font-style: italic; */
-    font-style: oblique;
+    /* font-style: oblique; */
     font-weight: lighter;
     font-size: 36px;
     line-height: 44px;
 
-    color: #DDA15E;
+    color:  #a2ffa5;
     /* font-variation-settings: 'slnt' -5; */
 
     text-shadow: 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
@@ -152,7 +152,7 @@
     width: 160px;
     height: 41px;
 
-    background: #DDAA5E;
+    background: #555;
     
     border-radius: 10px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);

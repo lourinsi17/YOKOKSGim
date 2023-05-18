@@ -94,7 +94,7 @@
         </div>
         </div>
 
-        <div class="GIM-membersCreate-formAllignment">
+        <!-- <div class="GIM-membersCreate-formAllignment">
         <div class="GIM-membersCreate-membershipSpace">
             {{Form::label('membership','Membership',['class' => 'class-name-for-labels'])}}
             <h4> Current Membership Plan: {{$currplan->name}} </h4>
@@ -106,7 +106,7 @@
                 @endforeach
             </select>   
         </div>
-        </div>
+        </div> -->
 
         <div name="address">
             <div class="GIM-membersCreate-formAllignment">
