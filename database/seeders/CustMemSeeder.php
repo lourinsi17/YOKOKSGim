@@ -17,33 +17,38 @@ class CustMemSeeder extends Seeder
         
         $custmem=CustomerMembership::create([ 
             'customer_id' => '1',
-            'membership_id' => '2',
-            'membership_end_date' => '2023-11-12 22:04:04',
-            'membership_expires_in' => '2022-11-12 22:04:04',
+         
+            'membership_start_date' => '2023-11-11',
+            'membership_end_date' => '2023-11-12',
+            'membership_expires_in' => '2022-11-12',
         ]);
         $custmem=CustomerMembership::create([ 
             'customer_id' => '2',
-            'membership_id' => '2',
-            'membership_end_date' => '2023-11-12 22:04:04',
-            'membership_expires_in' => '2022-11-12 22:04:04',
+       
+            'membership_start_date' => '2023-11-11',
+            'membership_end_date' => '2023-11-12',
+            'membership_expires_in' => '2022-11-12',
         ]);
         $custmem=CustomerMembership::create([ 
             'customer_id' => '3',
-            'membership_id' => '1',
-            'membership_end_date' => '2023-11-12 22:04:04',
-            'membership_expires_in' => '2022-11-12 22:04:04',
+        
+            'membership_start_date' => '2023-11-11',
+            'membership_end_date' => '2023-11-12',
+            'membership_expires_in' => '2022-11-12',
         ]);
         $custmem=CustomerMembership::create([ 
             'customer_id' => '4',
-            'membership_id' => '3',
-            'membership_end_date' => '2023-11-12 22:04:04',
-            'membership_expires_in' => '2022-11-12 22:04:04',
+         
+            'membership_start_date' => '2023-11-11',
+            'membership_end_date' => '2023-11-12',
+            'membership_expires_in' => '2022-11-12',
         ]);
         $custmem=CustomerMembership::create([ 
-            'customer_id' => '6',
-            'membership_id' => '1',
-            'membership_end_date' => '2023-11-12 22:04:04',
-            'membership_expires_in' => '2022-11-12 22:04:04',
+            'customer_id' => '5',
+         
+            'membership_start_date' => '2023-11-11',
+            'membership_end_date' => '2023-11-12',
+            'membership_expires_in' => '2022-11-12',
         ]);
     }
 }

@@ -17,7 +17,7 @@
     
     <div class="my-custom-row d-flex flex-row justify-content-between " >
         <div class="col-4 align-self-end">
-            <h1 class="head-title"> Update Member Information </h1>
+            <h1 class="head-title"> Update Member Information  </h1>
         </div>
         <div class="col-4 align-self-end d-flex justify-content-end" >
                 <a href="/members" class="go-back-bg ">
@@ -94,19 +94,7 @@
         </div>
         </div>
 
-        <!-- <div class="GIM-membersCreate-formAllignment">
-        <div class="GIM-membersCreate-membershipSpace">
-            {{Form::label('membership','Membership',['class' => 'class-name-for-labels'])}}
-            <h4> Current Membership Plan: {{$currplan->name}} </h4>
-            <select name="membership">
-                <option value={{$currplan->name}}> {{$currplan->name}} </option>
-                <option disabled></option>
-                @foreach($memberships as $membership)
-                    <option value="{{$membership->id}}">{{$membership->name}}</option>
-                @endforeach
-            </select>   
-        </div>
-        </div> -->
+    
 
         <div name="address">
             <div class="GIM-membersCreate-formAllignment">
@@ -147,12 +135,28 @@
                 {{Form::text('province',$customer->province,)}}
             </div>
             </div>
-
+            
+            
             <div class="GIM-membersCreate-formAllignment">
             <div class="GIM-membersCreate-inputZipCode">
                 {{Form::label('zip_code','Zip Code',['class' => 'class-name-for-labels'])}}
                 <br>
                 {{Form::text('zip_code',$customer->zip_code,)}}
+            </div>
+            </div>
+            
+           
+            <div class="GIM-membersCreate-formAllignment">
+            <div>
+                {{Form::label('membership_start_date','Membership Start Date ',['class' => 'class-name-for-labels'])}}
+                <br>
+                {{Form::date('membership_start_date',$customer->membership_start_date,)}}
+            </div>
+
+            <div class="GIM-membersCreate-rightSide">
+                {{Form::label('membership_end_date','Membership End Date ',['class' => 'class-name-for-labels'])}}
+                <br>
+                {{Form::date('membership_end_date',$customer->membership_end_date,)}}
             </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('lastname');
 
             $table->date('date_of_birth');
-
+                
             $table->string('phone_number')->nullable();
             $table->string('email')->unique();
 

@@ -23,7 +23,8 @@
                 </div>
                 
                 <div class="centerContainer">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start">
+                    @role('SuperAdmin')
                         <div class="container-box">
                             <a href="/employees">
                                 <div class="box">
@@ -33,10 +34,14 @@
                                     </svg>-->
                                 </div>
                             </a>
+                            
+                            
                             <div class="box-description">
                                 EMPLOYEES
                             </div>
+                           
                         </div>
+                    @endrole
                         <div class="container-box">
                             <a href="/members">
                                 <div class="box">
