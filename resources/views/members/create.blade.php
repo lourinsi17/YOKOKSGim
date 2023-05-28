@@ -89,17 +89,7 @@
         </div>
         </div>
 
-        <div class="GIM-membersCreate-formAllignment">
-        <div class="GIM-membersCreate-membershipSpace">
-            {{Form::label('membership','Membership')}} :
-            <select name="membership" style="margin-left: 5px;">
-                    <option value="NONE"> NONE </option>
-                @foreach($memberships as $membership)
-                    <option value="{{$membership->id}}" >{{$membership->name}}</option>
-                @endforeach
-            </select>    
-        </div>
-        </div>
+ 
 
         <div name="address">
             <div class="GIM-membersCreate-formAllignment">
@@ -142,7 +132,19 @@
                 <div class="errCreate">{{$errors->first('province')}}</div>
             </div>
             </div>
+            <div class="GIM-membersCreate-formAllignment">
+            <div>
+                {{Form::label('membership_start_date','Membership Start Date ',['class' => 'class-name-for-labels'])}}
+                <br>
+                {{Form::date('membership_start_date','',)}}
+            </div>
 
+            <div class="GIM-membersCreate-rightSide">
+                {{Form::label('membership_end_date','Membership End Date ',['class' => 'class-name-for-labels'])}}
+                <br>
+                {{Form::date('membership_end_date','',)}}
+            </div>
+            </div>
             <div class="GIM-membersCreate-formAllignment">
             <div class="GIM-membersCreate-inputZipCode">
                 {{Form::label('zip_code','Zip Code')}}

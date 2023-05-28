@@ -37,12 +37,7 @@ class CustomerController extends Controller
         foreach ($data as $key) {
             $customships = CustomerMembership::where ('customer_id', '=', $key->id)->first();
 
-            if($customships==null){
-                $key->name="NONE";
-            }else{
-                $membership = Membership::where('id','=',$customships->membership_id)->first();
-                $key->name = $membership->name;
-            }
+          
         }
        
        /* $data = [
@@ -84,9 +79,11 @@ class CustomerController extends Controller
             'email' => 'required|email',
             'city' => 'required',
             'province' => 'required',
+            
         ]);
 
         $customer = new Customer;
+        
         $customer->firstname = $request->input('firstname');
         $customer->middlename = $request->input('middlename');
         $customer->lastname = $request->input('lastname');
@@ -103,36 +100,17 @@ class CustomerController extends Controller
 
         $customer->save();
         
-        if($request->input('membership')!="NONE"){
-            $mem = Membership::where('id','=',$request->input('membership'))->first();
-            $cc = new CustomerMembership;
-            
-            $mem->cur_number=$mem->cur_number+1;
-
-            $dur=str_split($mem->duration,1);
-
-        if(strcmp($dur[0],"1")==0){
-            if(strcmp($dur[2],"Y")==0){
-                $cc->membership_end_date = $current->addYear();
-            }else if(strcmp($dur[2],"M")==0){
-                $cc->membership_end_date = $current->addMonth();
-            }else{ 
-                $val=str_split($mem->duration,2);
-                $cc->membership_end_date = $current->addMonths((int)$val[0]);
-            }
-            
-        }else{
-            $val = (int)$dur[0];
-            $cc->membership_end_date = $current->addMonths($val);
-        }
-
+   
+        $cc = new CustomerMembership;
         $cc->customer_id=$customer->id;
+        $cc->membership_start_date = $request->input('membership_start_date');
+        $cc->membership_end_date = $request->input('membership_end_date');
         $cc->membership_expires_in = $current;
-        $cc->membership_id=$request->input('membership');
+       
 
         $cc->save();
-        $mem->save();
-        }
+       
+        
 
         return redirect('/members')->with('success', 'Member Added Successfully');
     }
@@ -152,8 +130,6 @@ class CustomerController extends Controller
             $customer->membership_start_date = "- - -";
             $customer->membership_end_date = "- - -";
         }else{
-            $membership = Membership::where('id','=',$customships->membership_id)->first();
-            $customer->name = $membership->name;
             $customer->membership_start_date = $customships->membership_start_date;
             $customer->membership_end_date = $customships->membership_end_date;
         }
@@ -191,6 +167,8 @@ class CustomerController extends Controller
                 $currplan->name="NONE";
             }else{
                 $currplan = Membership::where ('id','=',$customships->membership_id)->first();
+                $customer->membership_start_date = $customships->membership_start_date;
+                $customer->membership_end_date = $customships->membership_end_date;
             }
         $memberships = Membership::all();
         $data = [
@@ -224,6 +202,11 @@ class CustomerController extends Controller
         ]);
 
         $customer = Customer::find($id);
+        $customships = CustomerMembership::where ('customer_id', '=', $id)->first();
+
+       
+        $customships->membership_start_date = $request->input('membership_start_date');
+        $customships->membership_end_date = $request->input('membership_end_date');
         $customer->status = $request->input('status');
         $customer->firstname = $request->input('firstname');
         $customer->middlename = $request->input('middlename');
@@ -240,78 +223,78 @@ class CustomerController extends Controller
         $customer->zip_code = $request->input('zip_code');
 
         $customer->save();
-        
-        $cc = CustomerMembership::where ('customer_id', '=', $id)->first();
+        $customships->save();
+        // $cc = CustomerMembership::where ('customer_id', '=', $id)->first();
 
         
-        if($cc==null) {
+        // if($cc==null) {
 
-            $newmem = Membership::where('id','=',$request->input('membership'))->first();
-            $cc = new CustomerMembership;
+        //     $newmem = Membership::where('id','=',$request->input('membership'))->first();
+        //     $cc = new CustomerMembership;
             
-            $newmem->cur_number=$newmem->cur_number+1;
+        //     $newmem->cur_number=$newmem->cur_number+1;
 
-            $dur=str_split($newmem->duration,1);
+        //     $dur=str_split($newmem->duration,1);
 
-            if(strcmp($dur[0],"1")==0){
-                if(strcmp($dur[2],"Y")==0){
-                    $cc->membership_end_date = $current->addYear();
-                }else if(strcmp($dur[2],"M")==0){
-                    $cc->membership_end_date = $current->addMonth();
-                }else{ 
-                    $val=str_split($newmem->duration,2);
-                    $cc->membership_end_date = $current->addMonths((int)$val[0]);
-                }
-            }else{
-                $val = (int)$dur[0];
-                $cc->membership_end_date = $current->addMonths($val);
-            }
+        //     if(strcmp($dur[0],"1")==0){
+        //         if(strcmp($dur[2],"Y")==0){
+        //             $cc->membership_end_date = $current->addYear();
+        //         }else if(strcmp($dur[2],"M")==0){
+        //             $cc->membership_end_date = $current->addMonth();
+        //         }else{ 
+        //             $val=str_split($newmem->duration,2);
+        //             $cc->membership_end_date = $current->addMonths((int)$val[0]);
+        //         }
+        //     }else{
+        //         $val = (int)$dur[0];
+        //         $cc->membership_end_date = $current->addMonths($val);
+        //     }
 
-            $cc->customer_id=$customer->id;
-            $cc->membership_expires_in = $current;
-            $cc->membership_id=$request->input('membership');
+        //     $cc->customer_id=$customer->id;
+        //     $cc->membership_expires_in = $current;
+        //     $cc->membership_id=$request->input('membership');
 
-            $newmem->save();
+        //     $newmem->save();
 
-            $cc->save();
+        //     $cc->save();
 
-        //if the membership plan has changed
-        }else if ($cc->membership_id!=$request->input('membership')){
-            $mem = Membership::where('id','=',$cc->membership_id)->first();
-            $mem->cur_number=$mem->cur_number-1;
-            $mem->save();
+        // //if the membership plan has changed
+        // }else if ($cc->membership_id!=$request->input('membership')){
+        //     $mem = Membership::where('id','=',$cc->membership_id)->first();
+        //     $mem->cur_number=$mem->cur_number-1;
+        //     $mem->save();
             
-            $newmem = Membership::where('id','=',$request->input('membership'))->first();
-            $newmem->cur_number=$newmem->cur_number+1;
-            $newmem->save();
+        //     $newmem = Membership::where('id','=',$request->input('membership'))->first();
+        //     $newmem->cur_number=$newmem->cur_number+1;
+        //     $newmem->save();
             
-            $dur=str_split($newmem->duration,1);
+        //     $dur=str_split($newmem->duration,1);
 
-            $cc->membership_id=$request->input('membership');
+        //     $cc->membership_id=$request->input('membership');
 
-            $dur=str_split($newmem->duration,1);
+        //     $dur=str_split($newmem->duration,1);
 
-            if(strcmp($dur[0],"1")==0){
-                if(strcmp($dur[2],"Y")==0){
-                    $cc->membership_end_date = $current->addYear();
-                }else if(strcmp($dur[2],"M")==0){
-                    $cc->membership_end_date = $current->addMonth();
-                }else{ 
-                    $val=str_split($mem->duration,2);
-                    $cc->membership_end_date = $current->addMonths((int)$val[0]);
-                }
-            }else{
-                $val = (int)$dur[0];
-                $cc->membership_end_date = $current->addMonths($val);
-            }
+        //     if(strcmp($dur[0],"1")==0){
+        //         if(strcmp($dur[2],"Y")==0){
+        //             $cc->membership_end_date = $current->addYear();
+        //         }else if(strcmp($dur[2],"M")==0){
+        //             $cc->membership_end_date = $current->addMonth();
+        //         }else{ 
+        //             $val=str_split($mem->duration,2);
+        //             $cc->membership_end_date = $current->addMonths((int)$val[0]);
+        //         }
+        //     }else{
+        //         $val = (int)$dur[0];
+        //         $cc->membership_end_date = $current->addMonths($val);
+        //     }
 
-            $cc->save();
+        //     $cc->save();
         
-            //if the membership plan has not changed
-        }else {
-            $cc->save();
+        //     //if the membership plan has not changed
+        // }else {
+        //     $cc->save();
         
-        }
+        // }
         
 
         return redirect('/members')->with('success', 'Member Updated Successfully');
@@ -329,26 +312,26 @@ class CustomerController extends Controller
         $customships = CustomerMembership::where ('customer_id', '=', $request->customer_delete_id)->first();
         $customclass = CustomerClass::where('customer_id', '=', $request->customer_delete_id)->first();
 
-        if($customships==null){
+        // if($customships==null){
             
-        }else{
-            $mem = Membership::where ('id','=',$customships->membership_id)->first();
-            $mem->cur_number=$mem->cur_number-1;
-            $mem->save();
+        // }else{
+        //     $mem = Membership::where ('id','=',$customships->membership_id)->first();
+        //     $mem->cur_number=$mem->cur_number-1;
+        //     $mem->save();
 
-            $customships->delete();
-        }
+        //     $customships->delete();
+        // }
 
             
-        while($customclass!=null){
-            $class = GymClass::where('id','=',$customclass->class_id)->first();
-            $class->cur_number=$class->cur_number-1;
-            $class->save();
+        // while($customclass!=null){
+        //     $class = GymClass::where('id','=',$customclass->class_id)->first();
+        //     $class->cur_number=$class->cur_number-1;
+        //     $class->save();
             
-            $customclass->delete();
+        //     $customclass->delete();
 
-            $customclass = CustomerClass::where('customer_id', '=', $request->customer_delete_id)->first();
-        }
+        //     $customclass = CustomerClass::where('customer_id', '=', $request->customer_delete_id)->first();
+        // }
 
 
         $customer->delete();

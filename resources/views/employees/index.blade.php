@@ -89,9 +89,10 @@
                         <th>DATE OF BIRTH</th>
                         <th>ROLE</th>
                         <th>STATUS</th>
-                        <th></th>
+                    
                          
-                        @role('SuperAdmin')  
+                        @role('SuperAdmin') 
+                        <th></th> 
                         <th></th>
                         @endrole 
  
@@ -130,6 +131,7 @@
                                 <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
                             </svg>
                         </td> -->
+                        @role('SuperAdmin')
                         <td class="tdIcon">
                         <span id="editPopover" data-toggle="popover-hover" data-container="body" title="Edit Employee" data-content="">
                             <a href="{{ route('employees.edit', $employee->id) }}">
@@ -140,7 +142,7 @@
                         </span>
                        
                         </td>
-                        @role('SuperAdmin')
+                        
                         <td class="deleteTD tdIcon">
                             <label class="removeInput">
                             <span id="deletePopover" data-toggle="popover-hover" data-container="body" title="Delete Employee" data-content="">
